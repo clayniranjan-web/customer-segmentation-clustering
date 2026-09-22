@@ -1,0 +1,20 @@
+
+# Raw and processed data — not tracked, see README for download instructions
+data/
+*.csv
+*.xlsx
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment
+.venv/
+venv/
+.env
+
+# OS junk
+.DS_Store
