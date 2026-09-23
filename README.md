@@ -17,6 +17,9 @@ Segment an online retailer's ~1M transactions into distinct customer groups base
 3. **Preprocessing** — log-transformed Monetary and Frequency to address right-skew from outlier (likely wholesale) customers; left Recency untransformed after confirming its distribution is multi-modal rather than skewed. Scaled all features with StandardScaler.
 4. **Clustering (in progress)** — comparing K-Means, Hierarchical, and DBSCAN on the same feature set, with PCA and UMAP used for dimensionality reduction and visualization.
 
+## PCA
+The PCA projection shows a continuous, dense cloud without clearly separated clusters, suggesting customer behavior exists on a spectrum rather than in distinct categories. A small number of extreme outliers (high Monetary/Frequency) are visible, consistent with the wholesale-pattern customers identified during EDA
+
 ## Repo Structure
 
 ```
