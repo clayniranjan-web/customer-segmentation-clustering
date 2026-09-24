@@ -20,6 +20,10 @@ Segment an online retailer's ~1M transactions into distinct customer groups base
 ## PCA
 The PCA projection shows a continuous, dense cloud without clearly separated clusters, suggesting customer behavior exists on a spectrum rather than in distinct categories. A small number of extreme outliers (high Monetary/Frequency) are visible, consistent with the wholesale-pattern customers identified during EDA
 
+## K-Means Clustering:
+Selected k=4 via elbow method + silhouette score (k=2 scored highest but was too coarse for business use). Produced 4 balanced clusters, but visibly imposed straight-line boundaries on data with no natural separation — a known K-Means limitation, later contrasted with DBSCAN's outlier handling.
+
+
 ## Repo Structure
 
 ```
