@@ -8,7 +8,7 @@ Segment an online retailer's ~1M transactions into distinct customer groups base
 
 ## Dataset
 
-[Online Retail II](https://archive.ics.uci.edu/dataset/502/online+retail+ii) — UCI Machine Learning Repository. ~1,067,371 transactions across two sheets (Dec 2009 – Dec 2011), UK-based online retailer. Not included in this repo (see below) — download directly from the source link above.
+[Online Retail II](https://www.kaggle.com/datasets/mashlyn/online-retail-ii-uci) — Kaggle Dataset. ~1,067,371 transactions across two sheets (Dec 2009 – Dec 2011), UK-based online retailer. Not included in this repo (see below) — download directly from the source link above.
 
 ## Approach
 
@@ -23,6 +23,9 @@ The PCA projection shows a continuous, dense cloud without clearly separated clu
 ## K-Means Clustering:
 Selected k=4 via elbow method + silhouette score (k=2 scored highest but was too coarse for business use). Produced 4 balanced clusters, but visibly imposed straight-line boundaries on data with no natural separation — a known K-Means limitation, later contrasted with DBSCAN's outlier handling.
 
+## Hierarchical Clustering (Ward Linkage)
+Cut to k=4 for direct comparison with K-Means. Produced a less balanced split (595–2,329 customers per cluster) than K-Means (965–1,891). Cross-tabulating the two labelings showed strong agreement on 2 of 4 segments (96–100% overlap), but K-Means' largest cluster was split across 3 different Hierarchical groups — evidence that a meaningful portion of customers sit in a continuous, ambiguous region rather than a well-defined cluster. Consistent with the earlier PCA/silhouette finding that customer behavior here isn't sharply segmented.
+
 
 ## Repo Structure
 
@@ -35,9 +38,9 @@ data/                        # Not tracked — see Dataset section above
 
 ## How to Reproduce
 
-1. Download the dataset from the UCI link above and place it under `data/`
-2. Run `notebooks/01_eda_cleaning.ipynb` — outputs `rfm.csv` and `feature_scaled.csv`
-3. Run `notebooks/02_modeling.ipynb`
+1. Download the dataset from the Kaggle link above and place it under `Data/`
+2. Run `Notebooks/01_eda_cleaning.ipynb` — outputs `rfm.csv` and `feature_scaled.csv`
+3. Run `Notebooks/02_modeling.ipynb`
 
 ## Key Decisions Worth Noting
 
