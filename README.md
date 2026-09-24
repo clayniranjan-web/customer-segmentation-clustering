@@ -1,6 +1,8 @@
 # Customer Segmentation using Unsupervised Learning
 
-**Status:** 🚧 In Progress — Notebook 1 (data cleaning + feature engineering) complete. Notebook 2 (clustering: PCA, K-Means, Hierarchical, DBSCAN, UMAP) in progress.
+**Status:** 🚧 In Progress:\
+Notebook 1 (data cleaning + feature engineering) complete.\
+Notebook 2 (clustering: PCA, K-Means, Hierarchical, DBSCAN, UMAP) in progress.
 
 ## Problem Statement
 
@@ -23,9 +25,12 @@ The PCA projection shows a continuous, dense cloud without clearly separated clu
 ## K-Means Clustering:
 Selected k=4 via elbow method + silhouette score (k=2 scored highest but was too coarse for business use). Produced 4 balanced clusters, but visibly imposed straight-line boundaries on data with no natural separation — a known K-Means limitation, later contrasted with DBSCAN's outlier handling.
 
-## Hierarchical Clustering (Ward Linkage)
+## Hierarchical Clustering (Ward Linkage):
 Cut to k=4 for direct comparison with K-Means. Produced a less balanced split (595–2,329 customers per cluster) than K-Means (965–1,891). Cross-tabulating the two labelings showed strong agreement on 2 of 4 segments (96–100% overlap), but K-Means' largest cluster was split across 3 different Hierarchical groups — evidence that a meaningful portion of customers sit in a continuous, ambiguous region rather than a well-defined cluster. Consistent with the earlier PCA/silhouette finding that customer behavior here isn't sharply segmented.
 
+## DBSCAN Clustering:
+DBSCAN's `eps` was tuned by testing values from 0.20 to 0.33 — lower values fragmented the data into several meaningless micro-clusters (4–11 customers each) alongside high noise counts (400+), while increasing `eps` progressively consolidated these into real structure. At 
+`eps=0.33` (`min_samples=5`), DBSCAN converged on 3 substantial clusters (3,209 / 1,604 / 930 customers) and flagged 135 customers (~2.3%) as noise — unlike K-Means and Hierarchical, which were forced to assign every customer, including extreme outliers, to one of k clusters. DBSCAN settled on 3 clusters rather than 4, and this isn't a discrepancy to resolve — it's the actual finding: density-based structure in this data supports 3 natural groups, with the rest being customers who don't fit any consistent behavioral pattern.
 
 ## Repo Structure
 
