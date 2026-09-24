@@ -78,8 +78,6 @@ Cut to k=4 for direct comparison. Produced a less balanced split (595–2,329 cu
 `eps` was tuned by testing values from 0.20 to 0.33 — lower values fragmented the data into meaningless micro-clusters (4–11 customers) with high noise counts (400+); increasing `eps` progressively consolidated this into real structure. At **eps=0.33** (`min_samples=5`), DBSCAN converged on **3** substantial clusters (3,209 / 1,604 / 930) and flagged **135 customers (~2.3%) as noise** — customers K-Means and Hierarchical were structurally forced to absorb into a normal cluster. DBSCAN settling on 3 clusters, not 4, isn't a discrepancy — it's the finding: density-based structure here supports 3 natural groups plus a genuine outlier fringe.
 
 ### UMAP
-![UMAP comparison across algorithms](images/umap_comparison.png)
-
 Applied as a non-linear check on whether PCA's smooth cloud was hiding real structure. UMAP's projection looks strikingly different — several distinct blobs connected by thin bridges. But overlaying all three algorithms' cluster labels onto this same layout shows **none of them align with UMAP's visual blobs**. This confirms the separation is a projection artifact (driven by UMAP's local-neighborhood-preserving nature and `min_dist`), not evidence of genuine behavioral segments.
 
 ---
